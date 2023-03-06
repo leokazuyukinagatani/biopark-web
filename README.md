@@ -8,7 +8,7 @@
 ![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
 
 
-# Biopark Server
+# Biopark Web
 
 Aplicação desenvolvida com ReactJS, foi utilizado vite para geração do projeto, utilizei tailwind para a estilização
 
@@ -44,7 +44,12 @@ Inicie o servidor
   npm run dev
 ```
 
+## Acesso
+Para entrar na parte admin do sistema, acessar pela rota localhost:5173/admin
 
+Já deixei um usuário administrador criado 
+email: biopark@gmail.com
+senha: 123456 
 ## Suporte
 
 Para suporte, mande um email para leokazuyukinagatani@gmail.com
