@@ -14,10 +14,12 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../components/Button'
 import { useEffect, useState } from 'react'
 import { api } from '../services/api'
+import clsx from 'clsx'
 
 export function BuildingDetails() {
   const params = useParams()
   const [building, setBuilding] = useState(null)
+  const [apartments, setApartments] = useState(null)
   const navigate = useNavigate()
   function handleNavigate() {
     navigate(-1)
@@ -26,8 +28,11 @@ export function BuildingDetails() {
   useEffect(() => {
     async function fetchData() {
       const response = await api.get(`/buildings/${params.id}`)
-      console.log(response)
+      console.log(response.data)
       setBuilding(response.data)
+      const apartmentResponse = await api.get(`/apartments/buildingId/${params.id}`)
+      console.log(apartmentResponse.data)
+      setApartments(apartmentResponse.data)
     }
     fetchData()
   }, [])
@@ -35,33 +40,10 @@ export function BuildingDetails() {
     <Container>
       <Header />
 
-      {/* 
-      <Section>
-        <strong > Pratos principais</strong>
-
-    
-        <Carousel showArrows={true} showStatus={false}  centerMode centerSlidePercentage={65} showThumbs={false} >
-          {meals.map((meal) => (
-            <Card data={meal} key={meal.id}/>
-          ))}
-        </Carousel>
-      </Section>
-
-      <Section>
-        <strong> Sobremesas</strong>
-
-       
-        <Carousel showArrows={true} showStatus={false}  centerMode centerSlidePercentage={65} showThumbs={false}>
-          {desserts.map((dessert) => (
-            <Card data={dessert} key={dessert.id}/>
-          ))}
-        </Carousel>
-      </Section> */}
-
       {building && (
         <Section>
           <div>
-            <img src={building.image.url} alt="" className="rounded-lg" />
+            <img src={building.image ? building.image.url : Biopark} alt="" className="rounded-lg" />
           </div>
           <strong className="text-4xl mb-10">{building.name}</strong>
           <div>quantidade de andares: {building.floors}</div>
@@ -70,21 +52,17 @@ export function BuildingDetails() {
             Diferenciais:{' '}
             {building.amenities &&
               building.amenities.map((amenity,index) => (
-                <span key={index} className="p-2 bg-dark-800 text-white">{amenity}</span>
+                <span key={index} className="p-2 bg-dark-800  text-white">{amenity}</span>
               ))}
           </div>
           <div>Localizado: Bairro Biopark - Toledo/PR</div>
 
-          {/* {building.apartment && (
+          {apartments&& (
             <Carousel showArrows={true} showStatus={false} showThumbs={false}>
-              <CardApartment />
-              <CardApartment />
-              <CardApartment />
-              <CardApartment />
-              <CardApartment />
-              <CardApartment />
+             { apartments.map((apartment) =>(  <CardApartment  key={apartment} data={apartment}/>
+           ) )}
             </Carousel>
-          )} */}
+          )}
         </Section>
       )}
 
