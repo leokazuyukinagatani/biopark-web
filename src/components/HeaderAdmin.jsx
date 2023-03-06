@@ -1,8 +1,5 @@
 import { useState } from 'react'
 import Logo from '../assets/logo.png'
-// import Receipt from '../assets/receipt.svg'
-// import { Input } from './Input'
-// import { AiOutlineSearch } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { TbReceipt } from 'react-icons/tb'
 import { useAuth } from '../hooks/auth'
@@ -43,17 +40,6 @@ export default function HeaderAdmin() {
               <span>Menu</span>
             </div>
             <ul className="flex flex-col items-start justify-start min-h-[250px] w-full px-7 mt-32 ">
-              {/* <li className="w-full mb-9">
-                <div className="w-full flex gap-4 bg-dark-900 focus-within:ring-2 focus-within:ring-cyan-600 text-light-100 px-3.5 py-4 border-0 rounded-lg">
-                  <AiOutlineSearch size={20} />
-
-                  <input
-                    placeholder="Busque por pratos ou ingredientes"
-                    type="text"
-                    className="bg-dark-900 text-light-100 w-full outline-none"
-                  />
-                </div>
-              </li> */}
               <li className="w-full border-b border-dark-1000 p-3">
                 <Link to="/admin/new/building">Cadastrar Prédio</Link>
               </li>
@@ -94,7 +80,7 @@ export default function HeaderAdmin() {
 
       <Link
         className="justify-self-end self-center transition duration-150 ease-out text-white  hover:ease-in hover:text-cyan-600"
-        to="/admin"
+        to="/admin/details/locations"
       >
         <TbReceipt size={25} color="inherit" />
       </Link>

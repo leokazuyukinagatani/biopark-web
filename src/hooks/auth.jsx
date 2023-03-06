@@ -1,12 +1,12 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { api } from '../services/api'
 import { toast } from 'react-toastify'
-// import { useNavigate } from 'react-router-dom'
+
 export const AuthContext = createContext({})
 
 function AuthProvider({ children }) {
   const [data, setData] = useState({})
-  // const navigate = useNavigate()
+
 
   async function signIn({ email, password }) {
     try {
@@ -85,7 +85,7 @@ function AuthProvider({ children }) {
       toast.success('Cadastro criado com sucesso')
       navigate('/')
     } catch (error) {
-      toast.warning(error.response.data.message)
+      toast.warning('Ops ocorreu um erro ao criar o usuário')
     }
   }
 

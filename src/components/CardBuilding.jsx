@@ -1,8 +1,3 @@
-// import Minus from '../assets/minus.svg'
-// import Plus from '../assets/plus.svg'
-// import Heart from '../assets/heart.svg'
-// import HeartFull from '../assets/heart-full.svg'
-// import { Link } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Biopark from '../assets/biopark.jpg'
 
