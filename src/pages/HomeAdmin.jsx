@@ -71,22 +71,7 @@ export function HomeAdmin() {
        
         </Carousel>
       </Section>
-      <Section>
-        <strong className="text-4xl mb-10"> Apartamentos</strong>
-
-        <Carousel
-          showArrows={true}
-          showStatus={false}
-          showThumbs={false}
-        >
-          <CardApartment />
-          <CardApartment />
-          <CardApartment />
-          <CardApartment />
-          <CardApartment />
-          <CardApartment />
-        </Carousel>
-      </Section>
+  
       <Footer />
     </Container>
   )
