@@ -6,12 +6,9 @@ import { BuildingNew } from '../pages/BuildingNew'
 
 import { Home } from '../pages/Home'
 import { HomeAdmin } from '../pages/HomeAdmin'
+import { LocationsDetails } from '../pages/LocationsDetails'
 
-// import { Profile } from '../pages/Profile'
-// import { New } from '../pages/New'
-// import { Details } from '../pages/Details'
-// import { Order } from '../pages/Order'
-// import { Update } from '../pages/Update'
+
 
 export function AppRoutes() {
   return (
@@ -19,10 +16,13 @@ export function AppRoutes() {
       <Route path="/" element={<Home/>}/>
       <Route path="/details/apartment/:id" element={<ApartmentDetails/>}/>
       <Route path="/details/building/:id" element={<BuildingDetails/>}/>
+      <Route path="/details/locations" element={<LocationsDetails/>}/>
+
       <Route path="/admin" element={<HomeAdmin/>} />
       <Route path="/admin/new/building" element={<BuildingNew/>}/>
       <Route path="/admin/new/apartment" element={<ApartmentNew/>}/>
       <Route path="/admin/details/building/:id" element={<BuildingDetails/>}/>
+      <Route path="/admin/details/locations" element={<LocationsDetails/>}/>
     </Routes>
   )
 }
