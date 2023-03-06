@@ -11,18 +11,40 @@ import { Section } from '../components/Section'
 import Biopark from '../assets/biopark.jpg'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../components/Button'
+import { useEffect, useState } from 'react'
+import { api } from '../services/api'
+import { toast } from 'react-toastify'
 
 export function ApartmentDetails() {
   const params = useParams()
   const [apartment, setApartment] = useState(null)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  function handleNavigate() {
-    navigate(-1)
+ 
+
+  async function handleSubmit() {
+    setLoading(true)
+    try {
+      const response = await api.post(`/locations/${params.id}`, {
+        startDate: new Date(),
+        endDate: new Date(2024, 12, 31),
+        totalValue: apartment.rentValue,
+      })
+      console.log(response)
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+      toast.error(error.message)
+    } finally {
+      setLoading(false)
+    }
+
+   
   }
 
   useEffect(() => {
     async function fetchData() {
-      const response = await api.get(`/buildings/${params.id}`)
+      const response = await api.get(`/apartments/${params.id}`)
       console.log(response)
       setApartment(response.data)
     }
@@ -55,39 +77,63 @@ export function ApartmentDetails() {
         </Carousel>
       </Section> */}
 
-      {
-        apartment && (
-          <Section>
-        <div >
-          <img src={apartment.image.url} alt="" className='rounded-lg' />
-        </div>
-        <strong className="text-4xl mb-10">Apartamento nº {apartment.apartmentNumber}</strong>
-        <div className="flex gap-2">
-          <span className='rounded-lg bg-slate-700 p-2 text-light-100'>{apartment.bedrooms} quartos</span>
-          <span className='rounded-lg bg-slate-700 p-2 text-light-100'>{apartment.bathrooms} banheiro</span>
-          <span className='rounded-lg bg-slate-700 p-2 text-light-100'>{apartment.parkingSpaces} vaga de estacionamento</span>
-        </div>
+      {apartment && (
+        <Section>
+          <div>
+            <img
+              src={apartment.image ? apartment.image.url : Biopark}
+              alt=""
+              className="rounded-lg"
+            />
+          </div>
+          <strong className="text-4xl mb-10">
+            Apartamento nº {apartment.apartmentNumber}
+          </strong>
+          <div className="flex gap-2">
+            <span className="rounded-lg bg-slate-700 p-2 text-light-100">
+              {apartment.bedrooms} quartos
+            </span>
+            <span className="rounded-lg bg-slate-700 p-2 text-light-100">
+              {apartment.bathrooms} banheiro
+            </span>
+            <span className="rounded-lg bg-slate-700 p-2 text-light-100">
+              {apartment.parkingSpaces} vaga de estacionamento
+            </span>
+          </div>
 
-        <div>Tamanho: {apartment.size}m²</div>
-        <div>Mobiliado: <span className='text-red-500'>não</span></div>
-        <div>Aceita pets: <span className='text-green-500'>sim</span></div>
-        <div>Valor:  R$1000</div>
-        <div>
-          <span>Localizado: Bairro Biopark - Toledo/PR </span>
+          <div>Tamanho: {apartment.size}m²</div>
+          <div>
+            Mobiliado: <span className="text-red-500">não</span>
+          </div>
+          <div>
+            Aceita pets: <span className="text-green-500">sim</span>
+          </div>
+          <div>Valor: R${apartment.rentValue}</div>
+          <div>
+            <span>Localizado: Bairro Biopark - Toledo/PR </span>
+          </div>
+          <span>Proprietário: Biopark</span>
+          <div className="flex justify-start items-center gap-2">
+            <span>Predio: Boulevar - 195</span>
+            <Link
+              className="p-1 text-green-500 rounded-lg text-light-100"
+              to="/details/building"
+            >
+              Ver mais detalhes ↗
+            </Link>
+          </div>
+          {apartment.location ? (<span className='text-3xl text-red-500'>Apartamento indisponivel</span>) :
+            <Button
+            onClick={handleSubmit}
+            type="button"
+            title="Alugar"
+            loading={loading}
+          />
+          }
           
-        </div>
-        <span>Proprietário: Biopark</span>
-        <div className='flex justify-start items-center gap-2'>
-          <span>Predio: Boulevar - 195</span><Link className='p-1 text-green-500 rounded-lg text-light-100' to="/details/building">Ver mais detalhes ↗</Link>
-        </div>
-       
-        <Button title='Fazer Proposta'/>
-        
-       
-      </Section>
-        )
-      }
-      
+        </Section>
+      )}
+
       <Footer />
     </Container>
   )
