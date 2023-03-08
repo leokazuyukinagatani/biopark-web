@@ -61,13 +61,19 @@ export default function HeaderAdmin() {
         <ul className="DESKTOP-MENU hidden space-x-8 text-light-400  lg:flex">
           <li>
             <Link to="/admin" onClick={signOut} className="text-white">
-              <BiExit size={25}/>
+              <BiExit size={25} />
             </Link>
           </li>
           <li>
             <Link to="/admin/new/building">Cadastrar Prédio</Link>
           </li>
-         
+
+          <li>
+            <Link to="/admin/new/apartment">Cadastrar Apartamento</Link>
+          </li>
+          <li>
+            <Link to="/">Lista de Alocações</Link>
+          </li>
         </ul>
       </nav>
       <Link
