@@ -28,10 +28,9 @@ export function SignIn() {
 
       await signIn(userValidated)
     } catch (zodError) {
-      // toast.error(error.message)
       const messages = zodError.errors.map((error) => error.message)
       console.log(messages)
-      // errors.map((error) => (toast.error(error.message)) )
+
       messages.map((message) => toast.error(message))
     } finally {
       setIsUserSignedIn(false)
@@ -40,7 +39,7 @@ export function SignIn() {
 
   return (
     <main className="w-screen h-screen flex flex-col justify-start items-center pt-8 bg-dark-400 gap-8">
-      <div >
+      <div>
         <img src={Logo} alt="" className="object-cover h-36 w-36" />
       </div>
 
@@ -65,6 +64,9 @@ export function SignIn() {
       </form>
       <Link className="text-light-100" to="/register">
         Criar uma conta
+      </Link>
+      <Link className="text-light-100" to="/admin">
+        Entrar como admin
       </Link>
     </main>
   )

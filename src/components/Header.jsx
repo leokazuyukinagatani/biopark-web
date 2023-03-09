@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { TbReceipt } from 'react-icons/tb'
 import { useAuth } from '../hooks/auth'
 import { BiExit } from 'react-icons/bi'
-export default function Header() {
+export function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const { signOut } = useAuth()
   return (
@@ -64,7 +64,7 @@ export default function Header() {
 
       <Link
         className="justify-self-end self-center transition duration-150 ease-out text-white  hover:ease-in hover:text-cyan-600"
-        to="/details/locations"
+        to="/details/propositions"
       >
         <TbReceipt size={25} color="inherit" />
       </Link>

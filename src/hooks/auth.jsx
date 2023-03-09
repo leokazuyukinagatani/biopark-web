@@ -81,10 +81,15 @@ function AuthProvider({ children }) {
   async function signUp({ name, email, password }) {
    
     try {
-      await api.post('/users', { name, email, password })
+      const response = await api.post('/users', { name, email, password })
+      console.log(response)
       toast.success('Cadastro criado com sucesso')
       navigate('/')
     } catch (error) {
+      console.log(error)
+      if(error.response){
+        toast.warning(error.response.data.message)
+      }
       toast.warning('Ops ocorreu um erro ao criar o usuário')
     }
   }

@@ -8,11 +8,10 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import { useEffect, useState } from 'react'
 import { api } from '../services/api'
+import { HeaderAdmin } from '../components/HeaderAdmin'
 
-import { Header } from '../components/Header'
 
-
-export function LocationsDetails() {
+export function LocationsAdminDetails() {
  
   const [locations, setLocations] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -20,7 +19,7 @@ export function LocationsDetails() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await api.get('/locations')
+      const response = await api.get('/locations/')
       console.log('resposta da busca pelos locations =>>', response)
       setLocations(response.data)
     }
@@ -28,8 +27,14 @@ export function LocationsDetails() {
   }, [])
   return (
     <Container>
-      <Header />
-      <div className='text-4xl text-light-100 mb-4'>Detalhes do aluguel</div>
+      <HeaderAdmin />
+      <Link
+        className="text-poppins font-medium text-2xl self-start ml-10 mt-10 text-light-400"
+        to="/admin"
+      >
+        {'< voltar'}
+      </Link>
+      <div className='text-4xl text-light-100 mt-4 mb-4'>Lista dos  aluguéis</div>
       <div className=" mt-5 relative overflow-x-auto shadow-md sm:rounded-lg min-h-screen">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

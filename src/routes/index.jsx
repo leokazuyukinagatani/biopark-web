@@ -5,7 +5,6 @@ import { AuthRoutes } from './auth.routes'
 import { AppRoutes } from './app.routes'
 
 import { CustomToaster } from '../components/CustomToaster'
-// import { AdminRoutes } from './admin.routes'
 
 export function Routes() {
   const { user } = useAuth()
@@ -14,9 +13,6 @@ export function Routes() {
     <BrowserRouter>
         <CustomToaster />
         {user ?  <AppRoutes /> : <AuthRoutes />}
-        {/* <AuthRoutes /> */}
-        {/* <AppRoutes /> */}
-        {/* <AdminRoutes/> */}
     </BrowserRouter>
   )
 }

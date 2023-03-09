@@ -1,6 +1,6 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 
-import {Header} from '../components/Header'
+
 
 
 import { Footer } from '../components/Footer'
@@ -12,9 +12,10 @@ import Biopark from '../assets/biopark.jpg'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { api } from '../services/api'
+import { HeaderAdmin } from '../components/HeaderAdmin'
 
 
-export function BuildingDetails() {
+export function BuildingAdminDetails() {
   const params = useParams()
   const [building, setBuilding] = useState(null)
   const [apartments, setApartments] = useState(null)
@@ -36,10 +37,10 @@ export function BuildingDetails() {
   }, [])
   return (
     <Container>
-      <Header />
+      <HeaderAdmin />
       <Link
         className="text-poppins font-medium text-2xl self-start ml-10 mt-10 text-light-400"
-        to="/"
+        to="/admin"
       >
         {'< voltar'}
       </Link>
@@ -55,7 +56,7 @@ export function BuildingDetails() {
             Diferenciais:{' '}
             {building.amenities &&
               building.amenities.map((amenity,index) => (
-                <span key={index} className="p-2 bg-dark-800  text-white">{amenity}</span>
+                <span key={index} className="p-2 bg-dark-800 rounded-lg text-white mr-2">{amenity}</span>
               ))}
           </div>
           <div>Localizado: Bairro Biopark - Toledo/PR</div>

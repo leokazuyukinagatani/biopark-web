@@ -1,4 +1,4 @@
-import HeaderAdmin from '../components/HeaderAdmin'
+import { HeaderAdmin } from '../components/HeaderAdmin'
 import { Input } from '../components/Input'
 
 import { Button } from '../components/Button'
@@ -83,7 +83,7 @@ export function ApartmentNew() {
       toast.success('Apartamento criado com sucesso!')
       navigate(-1)
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error.response.data.message)
     } finally {
       setLoading(false)
     }
@@ -100,15 +100,15 @@ export function ApartmentNew() {
 
       <Link
         className="text-poppins font-medium text-2xl self-start ml-10 mt-10 text-light-400"
-        to="/"
+        to="/admin"
       >
         {'< voltar'}
       </Link>
-
+      <div className='text-4xl text-light-100 mb-4'>Cadastro do apartamento</div>
       <Section>
         <form className="flex flex-col gap-6" encType="multipart/form-data">
           <InputFile
-            label="Imagem do apartmento"
+            label="Imagem do apartamento"
             onChange={(event) => handleChangeImage(event)}
           />
           <Select

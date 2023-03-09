@@ -11,7 +11,7 @@ import { useState } from 'react'
 const formValidationSchema = zod.object({
   name: zod.string().min(6, 'Insira um nome que contenha 6 caracteres'),
   email: zod.string().email({ message: 'Digite um email válido' }),
-  password: zod.string().min({ message: 'Digite um password válido' })
+  password: zod.string().min({ message: 'Digite um password válido' }),
 })
 
 export function SignUp() {
@@ -30,25 +30,22 @@ export function SignUp() {
       const userValidated = formValidationSchema.parse({
         name,
         email,
-        password
+        password,
       })
-      if (password != passwordConfirm) {
+      if (password !== passwordConfirm) {
         throw error('Confirmação de senha invalida')
       }
       console.log('iniciando o login')
       await signUp(userValidated)
-      navigate('/')
     } catch (zodError) {
-      if(zodError instanceof zod.ZodError){
+      
+      if (zodError instanceof zod.ZodError) {
         const messages = zodError.errors.map((error) => error.message)
         messages.map((message) => toast.error(message))
-      }else {
+      } else {
+        
         toast.error(zodError.message)
       }
-      
-
-      // errors.map((error) => (toast.error(error.message)) )
-      
     } finally {
       setIsUserSignedIn(false)
     }

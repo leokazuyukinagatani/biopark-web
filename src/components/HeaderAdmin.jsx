@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { TbReceipt } from 'react-icons/tb'
 import { useAuth } from '../hooks/auth'
 import { BiExit } from 'react-icons/bi'
-export default function HeaderAdmin() {
+export function HeaderAdmin() {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const { signOut } = useAuth()
   return (
@@ -47,7 +47,7 @@ export default function HeaderAdmin() {
                 <Link to="/admin/new/apartment">Cadastrar Apartamento</Link>
               </li>
               <li className="w-full border-b border-dark-1000 p-3">
-                <Link to="/">Lista de Alocações</Link>
+                <Link to="/admin/details/locations">Lista de Alocações</Link>
               </li>
               <li className="w-full border-b border-dark-1000 p-3">
                 <Link to="/admin" onClick={signOut}>
@@ -72,7 +72,7 @@ export default function HeaderAdmin() {
             <Link to="/admin/new/apartment">Cadastrar Apartamento</Link>
           </li>
           <li>
-            <Link to="/">Lista de Alocações</Link>
+            <Link to="/admin/details/locations">Lista de Alocações</Link>
           </li>
         </ul>
       </nav>
@@ -86,7 +86,7 @@ export default function HeaderAdmin() {
 
       <Link
         className="justify-self-end self-center transition duration-150 ease-out text-white  hover:ease-in hover:text-cyan-600"
-        to="/admin/details/locations"
+        to="/admin/details/propositions"
       >
         <TbReceipt size={25} color="inherit" />
       </Link>

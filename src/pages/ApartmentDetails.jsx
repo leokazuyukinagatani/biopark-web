@@ -1,9 +1,6 @@
-import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
-// import { Carousel } from 'react-responsive-carousel'
-import Header from '../components/Header'
-// import { Card } from '../components/Card'
-// import { Section } from '../components/Section'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
+import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { Container } from '../components/Container'
 import { Section } from '../components/Section'
@@ -20,32 +17,29 @@ export function ApartmentDetails() {
   const [apartment, setApartment] = useState(null)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
- 
 
-  async function handleSubmit() {
-    setLoading(true)
-    try {
-      const response = await api.post(`/locations/${params.id}`, {
-        startDate: new Date(),
-        endDate: new Date(2024, 12, 31),
-        totalValue: apartment.rentValue,
-      })
-      console.log(response)
-      navigate('/')
-    } catch (error) {
-      console.log(error)
-      toast.error(error.message)
-    } finally {
-      setLoading(false)
-    }
-
-   
-  }
+  // async function handleSubmit() {
+  //   setLoading(true)
+  //   try {
+  //     const response = await api.post(`/locations/${params.id}`, {
+  //       startDate: new Date(),
+  //       endDate: new Date(2024, 12, 31),
+  //       totalValue: apartment.rentValue,
+  //     })
+  //     console.log(response)
+  //     navigate('/')
+  //   } catch (error) {
+  //     console.log(error)
+  //     toast.error(error.message)
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
 
   useEffect(() => {
     async function fetchData() {
       const response = await api.get(`/apartments/${params.id}`)
-      console.log(response)
+      console.log('detalhes do apartamento',response.data)
       setApartment(response.data)
     }
     fetchData()
@@ -53,30 +47,13 @@ export function ApartmentDetails() {
   return (
     <Container>
       <Header />
-
-      {/* 
-      <Section>
-        <strong > Pratos principais</strong>
-
-    
-        <Carousel showArrows={true} showStatus={false}  centerMode centerSlidePercentage={65} showThumbs={false} >
-          {meals.map((meal) => (
-            <Card data={meal} key={meal.id}/>
-          ))}
-        </Carousel>
-      </Section>
-
-      <Section>
-        <strong> Sobremesas</strong>
-
-       
-        <Carousel showArrows={true} showStatus={false}  centerMode centerSlidePercentage={65} showThumbs={false}>
-          {desserts.map((dessert) => (
-            <Card data={dessert} key={dessert.id}/>
-          ))}
-        </Carousel>
-      </Section> */}
-
+      <Link
+        className="text-poppins font-medium text-2xl self-start ml-10 mt-10 text-light-400"
+        to="/"
+      >
+        {'< voltar'}
+      </Link>
+      <div className='text-4xl text-light-100 mb-4 mt-4'>Detalhes do apartamento</div>
       {apartment && (
         <Section>
           <div>
@@ -122,15 +99,13 @@ export function ApartmentDetails() {
               Ver mais detalhes ↗
             </Link>
           </div>
-          {apartment.location ? (<span className='text-3xl text-red-500'>Apartamento indisponivel</span>) :
-            <Button
-            onClick={handleSubmit}
-            type="button"
-            title="Alugar"
-            loading={loading}
-          />
-          }
-          
+          {apartment.location ? (
+            <span className="text-3xl text-red-500">
+              Apartamento indisponivel
+            </span>
+          ) : (
+            <Link className="p-2 bg-red-500 rounded-lg max-w-md flex items-center justify-center" to={`/new/proposition/${apartment.id}`}>Enviar uma proposta</Link>
+          )}
         </Section>
       )}
 

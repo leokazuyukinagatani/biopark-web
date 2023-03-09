@@ -28,11 +28,10 @@ export function SignInAdmin() {
 
       await signInAdmin(userValidated)
     } catch (zodError) {
-      // toast.error(error.message)
       if(zodError instanceof zod.ZodError){
         const messages = zodError.errors.map((error) => error.message)
         console.log(messages)
-        // errors.map((error) => (toast.error(error.message)) )
+      
         messages.map((message) => toast.error(message))
       } else{
         console.log(zodError.message)
@@ -45,7 +44,7 @@ export function SignInAdmin() {
   }
 
   return (
-    <main className="w-screen h-screen flex flex-col justify-start items-center pt-8 bg-dark-400 gap-8">
+    <main className="w-screen h-screen flex flex-col justify-start items-center pt-8 bg-dark-400 gap-8 mb-8">
       <div className='flex flex-col items-center justify-center '>
         <img src={Logo} alt="" className="object-cover h-36 w-36" />
         <strong className='text-3xl text-light-100'>Login Admin</strong>
@@ -69,8 +68,11 @@ export function SignInAdmin() {
           placeholder="No mínimo 6 caracteres"
         />
         <Button title="Entrar" type="submit" loading={isUserSignedIn} />
+        
       </form>
-      
+      <Link className="text-light-100" to="/">
+        Entrar como usuário
+      </Link>
     </main>
   )
 }
