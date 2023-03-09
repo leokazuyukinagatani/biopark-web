@@ -30,7 +30,14 @@ export function LocationAdminDetails() {
   }, [])
   return (
     <Container>
+    
       <HeaderAdmin />
+      <Link
+        className="text-poppins font-medium text-2xl self-start ml-10 mt-10 text-light-400"
+        to="/admin"
+      >
+        {'< voltar'}
+      </Link>
       <div className='text-4xl text-light-100 mb-4'>Detalhes do aluguel</div>
       {location && (
         <Section>
