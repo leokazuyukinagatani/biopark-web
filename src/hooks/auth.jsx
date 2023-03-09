@@ -7,7 +7,6 @@ export const AuthContext = createContext({})
 function AuthProvider({ children }) {
   const [data, setData] = useState({})
 
-
   async function signIn({ email, password }) {
     try {
       const response = await api.post('/sessions', { email, password })
@@ -50,7 +49,6 @@ function AuthProvider({ children }) {
     localStorage.removeItem('@biopark:user')
     localStorage.removeItem('@biopark:token')
     setData({})
-    // navigate('/')
   }
 
   // async function updateProfile({ user, avatarFile }) {
@@ -84,7 +82,7 @@ function AuthProvider({ children }) {
       const response = await api.post('/users', { name, email, password })
       console.log(response)
       toast.success('Cadastro criado com sucesso')
-      navigate('/')
+      // navigate('/')
     } catch (error) {
       console.log(error)
       if(error.response){
