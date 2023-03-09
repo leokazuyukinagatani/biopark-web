@@ -89,7 +89,7 @@ export function PropositionAdminDetails() {
 
           <div className="flex gap-3">
             {' '}
-            {proposition.status == ('REJECTED' || 'ACCEPTED') ? (
+            {proposition.status != 'PENDING' ? (
               <span className='text-2xl text-white bg-red-500 p-2 rounded-lg'>Proposta já foi respondida</span>
             ) : (
               <>

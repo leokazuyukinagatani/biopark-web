@@ -37,6 +37,7 @@ export function SignUp() {
       }
       console.log('iniciando o login')
       await signUp(userValidated)
+      navigate('/')
     } catch (zodError) {
       
       if (zodError instanceof zod.ZodError) {
