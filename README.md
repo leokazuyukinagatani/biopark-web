@@ -44,6 +44,10 @@ Inicie o servidor
   npm run dev
 ```
 
+Necessário
+
+rodar a api que esta neste [link](https://github.com/leokazuyukinagatani/biopark-server)
+
 ## Acesso
 Para entrar na parte admin do sistema, acessar pela rota localhost:5173/admin
 
